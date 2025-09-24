@@ -6,14 +6,23 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
 
+  <!-- 🔘 Botones (segment) -->
+  <ion-segment [value]="mode" (ionChange)="onModeChange($event)" class="seg">
+    <ion-segment-button value="all">
+      <ion-label>Todos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="aliveMales">
+      <ion-label>Alive • Male</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Lista con tarjetas -->
   <ion-list class="character-list" *ngIf="characters$ | async as items; else loading">
-    <!-- Card -->
     <div class="char-card" *ngFor="let ch of items">
       <ion-item lines="none" class="char-row">
         <ion-avatar slot="start" class="avatar">
           <img [src]="ch.image || 'https://via.placeholder.com/80x80.png?text=–'" [alt]="ch.name" />
         </ion-avatar>
-
         <ion-label class="info">
           <h3 class="name">{{ ch.name }}</h3>
           <p class="species">{{ ch.species || '—' }}</p>
@@ -27,6 +36,7 @@
     </ion-item>
   </ion-list>
 
+  <!-- Skeleton mientras carga -->
   <ng-template #loading>
     <ion-list class="character-list">
       <div class="char-card" *ngFor="let s of [1,2,3,4,5]">
