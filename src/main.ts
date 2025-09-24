@@ -5,9 +5,13 @@ import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalo
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 
+// Firebase (si ya lo usas)
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from './environments/environment';
+
+// ✅ HttpClient para consumir APIs
+import { provideHttpClient } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -15,8 +19,9 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
 
-    // Firebase + Firestore
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideHttpClient(),
+
+    provideFirebaseApp(() => initializeApp((environment as any).firebase ?? {})),
     provideFirestore(() => getFirestore()),
   ],
 });

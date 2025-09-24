@@ -19,5 +19,10 @@ export const routes: Routes = [
         (m) => m.CharacterCrudPage
       ),
   },
+  {
+    path: 'comme-page',
+    loadComponent: () =>
+      import('./pages/comme-page/comme-page.page').then(m => m.CommePage),
+  },
   { path: '', pathMatch: 'full', redirectTo: 'character-crud' },
 ];
