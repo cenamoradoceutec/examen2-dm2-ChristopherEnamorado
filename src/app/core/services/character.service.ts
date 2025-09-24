@@ -9,6 +9,7 @@ import {
   deleteDoc,
   query,
   orderBy,
+  where
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Character, CharacterInput } from '../models/character.model';
@@ -79,14 +80,21 @@ export class CharacterService {
     }
   }
   getAll() {
-    return this.inCtx(() =>
-      collectionData(this.colRef, { idField: 'firestoreId' }) as Observable<Character[]>
+  return this.inCtx(() => {
+    const q = query(this.colRef, orderBy('created', 'desc'));
+    return collectionData(q, { idField: 'firestoreId' }) as Observable<Character[]>;
+  });
+}
+ getAliveMales() {
+  return this.inCtx(() => {
+    // OJO: usamos 'gender' y 'status' en minúsculas porque así está tu colección
+    const q = query(
+      this.colRef,
+      where('gender', '==', 'Male'),
+      where('status', '==', 'Alive'),
+      orderBy('created', 'desc')
     );
-  }
-  getAliveMales() {
-    return this.inCtx(() => {
-      const q = query(this.colRef, orderBy('created', 'desc'));
-      return collectionData(q, { idField: 'firestoreId' }) as Observable<Character[]>;
-    });
-  }
+    return collectionData(q, { idField: 'firestoreId' }) as Observable<Character[]>;
+  });
+}
 }

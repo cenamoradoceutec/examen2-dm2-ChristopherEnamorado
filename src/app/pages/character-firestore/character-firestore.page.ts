@@ -28,7 +28,7 @@ export class CharacterFirestorePage {
   private readonly service = inject(CharacterService);
 
   mode: ViewMode = 'all';
-  characters$: Observable<Character[]> = this.service.getAll();
+  characters$: Observable<Character[]> = this.service.getAliveMales();
 
   onModeChange(ev: CustomEvent) {
     const value = (ev.detail as any).value as ViewMode;
@@ -55,4 +55,12 @@ export class CharacterFirestorePage {
     }
     return null;
   }
+
+  statusClass(status: string | null | undefined): string {
+  const s = (status || '').toLowerCase();
+  if (s === 'alive') return 'status alive';
+  if (s === 'dead')  return 'status dead';
+  return 'status unknown';
+}
+
 }
