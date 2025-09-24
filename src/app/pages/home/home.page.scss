@@ -1,0 +1,40 @@
+.banner {
+  margin-bottom: 8px;
+
+  img {
+    width: 100%;
+    height: 120px;        /* ajusta si tu mockup requiere otro alto */
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+  }
+}
+
+.prompt {
+  color: var(--ion-color-medium);
+  margin: 6px 0 12px;
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  .icon-btn {
+    width: 48px;
+    height: 48px;
+    --padding-start: 0;
+    --padding-end: 0;
+    --border-radius: 14px;
+    ion-icon {
+      font-size: 22px;
+    }
+  }
+}
+
+.nav {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}

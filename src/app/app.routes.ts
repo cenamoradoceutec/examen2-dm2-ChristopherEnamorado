@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
   },
   {
     path: 'character-firestore-page',
@@ -24,5 +24,5 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/comme-page/comme-page.page').then(m => m.CommePage),
   },
-  { path: '', pathMatch: 'full', redirectTo: 'character-crud' },
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
 ];

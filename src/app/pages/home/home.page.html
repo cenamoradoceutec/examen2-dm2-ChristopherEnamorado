@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <!-- Banner: solo aparece si el usuario eligió/tomó una foto -->
+  <div class="banner" *ngIf="photoDataUrl">
+    <img [src]="photoDataUrl" alt="foto seleccionada" />
+  </div>
+
+  <p class="prompt">¿Qué estas pensando hoy?</p>
+
+  <div class="actions">
+    <ion-button class="icon-btn" (click)="pickImage()">
+      <ion-icon name="image"></ion-icon>
+    </ion-button>
+
+    <ion-button class="icon-btn" (click)="getLocation()">
+      <ion-icon name="location"></ion-icon>
+    </ion-button>
+  </div>
+
+  <div class="nav">
+    <ion-button fill="outline" (click)="goTo('/character-firestore-page')">
+      Ir a Characters (Firestore)
+    </ion-button>
+    <ion-button fill="outline" (click)="goTo('/comme-page')">
+      Ir a Photos (API)
+    </ion-button>
+  </div>
+
+</ion-content>
