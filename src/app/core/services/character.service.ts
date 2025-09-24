@@ -13,19 +13,27 @@ import { Character } from '../models/character.model';
 @Injectable({ providedIn: 'root' })
 export class CharacterService {
   private readonly firestore = inject(Firestore);
+  private readonly colRef = collection(this.firestore, 'characters'); // <- nombre exacto
 
-  /**
-   * Obtiene personajes con:
-   *  Gender == 'Male'
-   *  Status == 'Alive'
-   *  Ordenados por created desc
+  /** ✅ Obtener TODOS los documentos, sin filtros ni orden */
+  getAll(): Observable<Character[]> {
+    return collectionData(this.colRef, { idField: 'id' }) as Observable<Character[]>;
+  }
+
+  /** (Opcional) Todos, ordenados por "created" descendente.
+   *  OJO: si "created" mezcla tipos (string/number/Timestamp) Firestore ordena distinto.
    */
+  getAllByCreatedDesc(): Observable<Character[]> {
+    const q = query(this.colRef, orderBy('created', 'desc'));
+    return collectionData(q, { idField: 'id' }) as Observable<Character[]>;
+  }
+
+  /** (Opcional) Filtro con campos en MINÚSCULAS: gender == 'Male', status == 'Alive' */
   getAliveMales(): Observable<Character[]> {
-    const colRef = collection(this.firestore, 'characters');
     const q = query(
-      colRef,
-      where('Gender', '==', 'Male'),
-      where('Status', '==', 'Alive'),
+      this.colRef,
+      where('gender', '==', 'Male'),
+      where('status', '==', 'Alive'),
       orderBy('created', 'desc')
     );
     return collectionData(q, { idField: 'id' }) as Observable<Character[]>;

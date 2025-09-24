@@ -1,22 +1,15 @@
 import type { Timestamp } from 'firebase/firestore';
 
-export type CharacterGender = 'Male' | 'Female' | 'Unknown' | string;
-export type CharacterStatus = 'Alive' | 'Dead' | 'Unknown' | string;
-
-/**
- * Estructura esperada en la colección "characters"
- * Campos recomendados: name, gender (o "Gender"), status (o "Status"), image, species, created
- * OJO: En Firestore los nombres son sensibles. Usamos las keys exactamente como pides:
- *  - "Gender"
- *  - "Status"
- *  - "created"
- */
 export interface Character {
-  id?: string;
+  /** id del documento de Firestore (si usas collectionData(...,{idField:'id'}) es string) */
+  id: string;
   name: string;
-  Gender: CharacterGender;   // campo exacto en Firestore
-  Status: CharacterStatus;   // campo exacto en Firestore
+  gender: string;    // <- minúsculas, como en tu colección
+  status: string;    // <- minúsculas, como en tu colección
   image?: string;
   species?: string;
-  created: number | Timestamp; // epoch ms o Timestamp de Firestore
+  /**
+   * Puede venir como string (ISO o epoch en texto), number (epoch) o Timestamp de Firestore.
+   */
+  created: string | number | Timestamp;
 }

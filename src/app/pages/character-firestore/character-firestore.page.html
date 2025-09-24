@@ -1,15 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Characters (Alive • Male)</ion-title>
+    <ion-title>Characters</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
 
+  <!-- Cambiar entre TODOS o filtro -->
+  <ion-segment [value]="mode" (ionChange)="onModeChange($event)" class="ion-margin-bottom">
+    <ion-segment-button value="all">
+      <ion-label>Todos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="aliveMales">
+      <ion-label>Alive • Male</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
   <ion-list *ngIf="characters$ | async as items; else loading">
     <ion-item *ngFor="let ch of items" lines="inset" class="character-item">
       <ion-avatar slot="start">
-        <!-- Fallback si no hay imagen -->
         <img *ngIf="ch.image; else noimg" [src]="ch.image" alt="{{ch.name}}" />
         <ng-template #noimg>
           <img src="https://via.placeholder.com/80x80.png?text=?" alt="no image" />
@@ -19,16 +28,20 @@
       <ion-label>
         <h2>{{ ch.name }}</h2>
         <div class="chips">
-          <ion-chip color="success">{{ ch.Status }}</ion-chip>
-          <ion-chip>{{ ch.Gender }}</ion-chip>
+          <ion-chip *ngIf="ch.status">{{ ch.status }}</ion-chip>
+          <ion-chip *ngIf="ch.gender">{{ ch.gender }}</ion-chip>
           <ion-chip *ngIf="ch.species">{{ ch.species }}</ion-chip>
         </div>
-        <p class="created">Creado: {{ toDate(ch.created) | date:'medium' }}</p>
+
+        <!-- Solo muestra fecha si pudo convertirse -->
+        <ng-container *ngIf="toDate(ch.created) as d">
+          <p class="created">Creado: {{ d | date:'medium' }}</p>
+        </ng-container>
       </ion-label>
     </ion-item>
 
     <ion-item *ngIf="items.length === 0">
-      <ion-label><ion-text>No hay resultados que cumplan el filtro.</ion-text></ion-label>
+      <ion-label><ion-text>No hay documentos en la colección.</ion-text></ion-label>
     </ion-item>
   </ion-list>
 
@@ -36,4 +49,7 @@
     <ion-text>Cargando personajes…</ion-text>
   </ng-template>
 
+  <!-- DEBUG opcional: descomenta para ver el JSON crudo
+  <pre>{{ characters$ | async | json }}</pre>
+  -->
 </ion-content>
