@@ -5,8 +5,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-
-  <!-- Cambiar entre TODOS o filtro -->
   <ion-segment [value]="mode" (ionChange)="onModeChange($event)" class="ion-margin-bottom">
     <ion-segment-button value="all">
       <ion-label>Todos</ion-label>
@@ -33,7 +31,6 @@
           <ion-chip *ngIf="ch.species">{{ ch.species }}</ion-chip>
         </div>
 
-        <!-- Solo muestra fecha si pudo convertirse -->
         <ng-container *ngIf="toDate(ch.created) as d">
           <p class="created">Creado: {{ d | date:'medium' }}</p>
         </ng-container>
@@ -48,8 +45,4 @@
   <ng-template #loading>
     <ion-text>Cargando personajes…</ion-text>
   </ng-template>
-
-  <!-- DEBUG opcional: descomenta para ver el JSON crudo
-  <pre>{{ characters$ | async | json }}</pre>
-  -->
 </ion-content>

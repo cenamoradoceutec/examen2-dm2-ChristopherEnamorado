@@ -1,27 +1,9 @@
 .character-item {
   --inner-padding-end: 12px;
 
-  ion-avatar {
-    width: 64px;
-    height: 64px;
-    img { object-fit: cover; }
-  }
+  ion-avatar { width: 64px; height: 64px; img { object-fit: cover; } }
+  h2 { margin: 0 0 6px; font-weight: 600; }
 
-  h2 {
-    margin: 0 0 6px;
-    font-weight: 600;
-  }
-
-  .chips {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 4px;
-  }
-
-  .created {
-    color: var(--ion-color-medium);
-    font-size: 12px;
-    margin: 4px 0 0;
-  }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
+  .created { color: var(--ion-color-medium); font-size: 12px; margin: 4px 0 0; }
 }

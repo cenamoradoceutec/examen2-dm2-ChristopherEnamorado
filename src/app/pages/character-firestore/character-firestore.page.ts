@@ -28,7 +28,6 @@ export class CharacterFirestorePage {
   private readonly service = inject(CharacterService);
 
   mode: ViewMode = 'all';
-  /** ✅ Por defecto: TODOS */
   characters$: Observable<Character[]> = this.service.getAll();
 
   onModeChange(ev: CustomEvent) {
@@ -36,23 +35,18 @@ export class CharacterFirestorePage {
     this.mode = value;
     this.characters$ = value === 'all'
       ? this.service.getAll()
-      : this.service.getAliveMales(); // usa gender/status en minúsculas
+      : this.service.getAliveMales();
   }
 
-  /** Convierte string | number | Timestamp a Date (o null si no parsea) */
   toDate(value: string | number | Timestamp): Date | null {
-    // Timestamp de Firestore
     if (value && typeof value === 'object' && 'toDate' in value) {
       return (value as Timestamp).toDate();
     }
-    // number epoch
     if (typeof value === 'number') return new Date(value);
-    // string: puede ser epoch en texto o ISO
     if (typeof value === 'string') {
       const trimmed = value.trim();
       const asNum = Number(trimmed);
-      if (!Number.isNaN(asNum) && trimmed.match(/^\d+$/)) {
-        // epoch en ms o s: si parece de 10 dígitos, multiplícalo a ms
+      if (!Number.isNaN(asNum) && /^\d+$/.test(trimmed)) {
         const ms = trimmed.length <= 10 ? asNum * 1000 : asNum;
         return new Date(ms);
       }

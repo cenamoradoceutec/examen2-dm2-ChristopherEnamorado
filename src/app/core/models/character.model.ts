@@ -1,15 +1,17 @@
 import type { Timestamp } from 'firebase/firestore';
 
-export interface Character {
-  /** id del documento de Firestore (si usas collectionData(...,{idField:'id'}) es string) */
-  id: string;
+export interface CharacterInput {
+  id: number;
   name: string;
-  gender: string;    // <- minúsculas, como en tu colección
-  status: string;    // <- minúsculas, como en tu colección
+  gender: string;
+  status: string;
   image?: string;
   species?: string;
-  /**
-   * Puede venir como string (ISO o epoch en texto), number (epoch) o Timestamp de Firestore.
-   */
+  type?: string;
+  url?: string;
   created: string | number | Timestamp;
+}
+
+export interface Character extends CharacterInput {
+  firestoreId: string;
 }
