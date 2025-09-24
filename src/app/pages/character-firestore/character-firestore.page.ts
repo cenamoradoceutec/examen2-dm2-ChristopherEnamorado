@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent,
-  IonList, IonItem, IonLabel, IonAvatar, IonText,
+  IonList, IonItem, IonLabel, IonAvatar,
   IonSegment, IonSegmentButton, IonSkeletonText
 } from '@ionic/angular/standalone';
 import { CharacterService } from '../../core/services/character.service';
@@ -20,7 +20,7 @@ type ViewMode = 'all' | 'aliveMales';
   imports: [
     CommonModule,
     IonHeader, IonToolbar, IonTitle, IonContent,
-    IonList, IonItem, IonLabel, IonAvatar, IonText,
+    IonList, IonItem, IonLabel, IonAvatar,
     IonSegment, IonSegmentButton, IonSkeletonText
   ],
 })

@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent,
-  IonButton, IonIcon, IonText
+  IonButton, IonIcon,
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
@@ -15,7 +15,7 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
   imports: [
     CommonModule,
     IonHeader, IonToolbar, IonTitle, IonContent,
-    IonButton, IonIcon, IonText
+    IonButton, IonIcon,
   ],
 })
 export class HomePage {

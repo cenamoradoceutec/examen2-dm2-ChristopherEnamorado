@@ -5,13 +5,17 @@ import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalo
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 
-// Firebase (si ya lo usas)
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from './environments/environment';
 
-// ✅ HttpClient para consumir APIs
 import { provideHttpClient } from '@angular/common/http';
+
+import { addIcons } from 'ionicons';
+import { image, location } from 'ionicons/icons'
+
+
+addIcons({ image, location });
 
 bootstrapApplication(AppComponent, {
   providers: [

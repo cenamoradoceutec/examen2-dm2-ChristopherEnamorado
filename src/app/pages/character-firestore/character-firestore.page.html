@@ -6,17 +6,17 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
 
-  <!-- 🔘 Botones (segment) -->
+
   <ion-segment [value]="mode" (ionChange)="onModeChange($event)" class="seg">
     <ion-segment-button value="all">
       <ion-label>Todos</ion-label>
     </ion-segment-button>
     <ion-segment-button value="aliveMales">
-      <ion-label>Alive • Male</ion-label>
+      <ion-label>Filtro solo MaLE</ion-label>
     </ion-segment-button>
   </ion-segment>
 
-  <!-- Lista con tarjetas -->
+ 
   <ion-list class="character-list" *ngIf="characters$ | async as items; else loading">
     <div class="char-card" *ngFor="let ch of items">
       <ion-item lines="none" class="char-row">
@@ -36,7 +36,6 @@
     </ion-item>
   </ion-list>
 
-  <!-- Skeleton mientras carga -->
   <ng-template #loading>
     <ion-list class="character-list">
       <div class="char-card" *ngFor="let s of [1,2,3,4,5]">
