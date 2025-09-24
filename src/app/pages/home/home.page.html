@@ -6,7 +6,6 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
 
-  <!-- Banner: solo aparece si el usuario eligió/tomó una foto -->
   <div class="banner" *ngIf="photoDataUrl">
     <img [src]="photoDataUrl" alt="foto seleccionada" />
   </div>
@@ -25,10 +24,10 @@
 
   <div class="nav">
     <ion-button fill="outline" (click)="goTo('/character-firestore-page')">
-      Ir a Characters (Firestore)
+      Ir a Characters
     </ion-button>
     <ion-button fill="outline" (click)="goTo('/comme-page')">
-      Ir a Photos (API)
+      Ir a Blog
     </ion-button>
   </div>
 

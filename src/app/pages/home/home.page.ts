@@ -27,21 +27,19 @@ export class HomePage {
     try {
       const photo = await Camera.getPhoto({
         quality: 80,
-        resultType: CameraResultType.DataUrl,  // fácil de mostrar en <img>
-        source: CameraSource.Prompt,           // cámara o galería
+        resultType: CameraResultType.DataUrl, 
+        source: CameraSource.Prompt,          
         allowEditing: false
       });
       this.photoDataUrl = photo?.dataUrl ?? null;
     } catch (err) {
-      // Usuario canceló o error → no mostramos nada
       this.photoDataUrl = null;
       console.warn('Imagen no seleccionada', err);
     }
   }
 
-  // Opcional: acción de ubicación (solo demo)
   async getLocation() {
-    console.log('Aquí podrías integrar Geolocation si lo necesitas');
+    console.log('Prefiero ReactNative :D');
   }
 
   goTo(url: string) {

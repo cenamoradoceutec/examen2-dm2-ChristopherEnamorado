@@ -11,7 +11,6 @@
   <ion-list *ngIf="photos$ | async as photos; else loading">
     <ion-item *ngFor="let p of photos | slice:0:50">
       <ion-label>
-        <!-- Muestra title e id concatenados en un único string -->
         <h2>{{ concatTitleId(p) }}</h2>
         <p>{{ concatTitleId(p) }} {{ concatTitleId(p) }}</p>
       </ion-label>

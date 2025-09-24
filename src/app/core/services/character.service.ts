@@ -78,8 +78,6 @@ export class CharacterService {
       await this.createSample();
     }
   }
-
-  // Filtros opcionales que ya tienes en la otra página:
   getAll() {
     return this.inCtx(() =>
       collectionData(this.colRef, { idField: 'firestoreId' }) as Observable<Character[]>
